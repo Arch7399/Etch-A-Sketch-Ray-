@@ -1,8 +1,9 @@
 .board {
+    display: grid;
     margin-top: 20px;
     width: 500px;
     height: 500px;
-    background-color: rgb(184, 214, 213);
+    border: 3px solid rgb(228, 203, 224);
 }
 
 button, .size-input {
