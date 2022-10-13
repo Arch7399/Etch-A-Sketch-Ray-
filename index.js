@@ -1,19 +1,36 @@
+let newColor = "white";
 const board = document.querySelector('.board');
- function makeBoard(size){
+const inputField = document.querySelector('#size-input');
+ 
+function generateBoard(size){
+    board.querySelectorAll('div').forEach(box => box.remove());
     const total = size * size;
-    
     board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
     board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    
     for(let i = 0; i < total; i++){
         let cell = document.createElement('div');
         board.insertAdjacentElement('beforeend', cell);
+        cell.addEventListener('mouseover', colorCells);
     }
  }
- makeBoard(16);
+ 
+ function boardSize(input){
+    newColor = 'white';
+    inputField.value = `${input}`;
+    generateBoard(input);
+ }
 
- function colorSelect(colors){
-    const cells = board.querySelectorAll('div');
-    cells.forEach(cell => cell.addEventListener('mouseover', () => {
-        cell.style.backgroundColor = `${colors}`;
-    }));
- };
+ function setColor(color){
+    newColor = color;
+ }
+
+ function colorCells(){
+        if(newColor === "mixed"){
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        } else { 
+            this.style.backgroundColor = `${newColor}`; 
+        }
+ }
+
+ generateBoard(50); //board ready to sketch for first page load

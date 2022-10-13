@@ -13,14 +13,16 @@
         <div class="title">Sketching Board</div>
         <div class="board"></div>
         <div class="color-buttons">
-            <button class="red" onclick="colorSelect('red')">Red</button>
-            <button class="green" onclick="colorSelect('green')">Green</button>
-            <button class="blue" onclick="colorSelect('blue')">Blue</button>
-            <button class="mixed" onclick="colorSelect('mixed')">Mixed Colors</button>
-            <button class="white" onclick="colorSelect('white')">Eraser</button>
+            <button class="red" onclick="setColor('red')">Red</button>
+            <button class="green" onclick="setColor('green')">Green</button>
+            <button class="blue" onclick="setColor('blue')">Blue</button>
+            <button class="mixed" onclick="setColor('mixed')">Mixed Colors</button>
+            <button class="white" onclick="setColor('white')">Eraser</button>
         </div>
-        <input type="text" class="size-input" placeholder="Enter a grid size....">
+        <label for="#size-input">Enter a Grid Size: </label>
+        <input type="text" id="size-input" value="50" onchange="boardSize(this.value)">
         <button class="input">Get Board</button>
+        <button class="input" onclick="boardSize(50)">New Board</button>
     </div>
 </body>
 <script src="./index.js"></script>
