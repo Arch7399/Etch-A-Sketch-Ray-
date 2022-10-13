@@ -16,9 +16,14 @@ function generateBoard(size){
  }
  
  function boardSize(input){
+    if (input > 200 || input < 2){ 
+        alert("Enter a size between 2 and 200");
+        return;}
+    else {
     newColor = 'white';
     inputField.value = `${input}`;
     generateBoard(input);
+    }
  }
 
  function setColor(color){
