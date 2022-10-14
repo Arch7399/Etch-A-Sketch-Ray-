@@ -1,4 +1,5 @@
 let newColor = "white";
+let mouseClick = true;
 const board = document.querySelector('.board');
 const inputField = document.querySelector('#size-input');
  
@@ -13,10 +14,24 @@ function generateBoard(size){
         board.insertAdjacentElement('beforeend', cell);
         cell.addEventListener('mouseover', colorCells);
     }
+    bColor(); 
+ }
+
+ function bColor(){
+    const colButtons = document.querySelectorAll('.colors');
+    colButtons.forEach((button) => {
+        if(button.value === 'mixed'){
+            button.style.border = `3px solid hsl(${Math.random()*360}, 100%, 50%)`;
+            button.style.color = `hsl(${Math.random()*360}, 100%, 50%)`;
+        } else {
+            button.style.border = `3px solid ${button.value}`;
+            button.style.color = `${button.value}`;
+        }
+    });
  }
  
  function boardSize(input){
-    if (input > 200 || input < 2){ 
+    if (input > 100 || input < 2){ 
         alert("Enter a size between 2 and 200");
         return;}
     else {
@@ -31,11 +46,15 @@ function generateBoard(size){
  }
 
  function colorCells(){
+    if(mouseClick){
         if(newColor === "mixed"){
             this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
         } else { 
             this.style.backgroundColor = `${newColor}`; 
         }
+    }
  }
+
+board.addEventListener('click', () => mouseClick = !mouseClick); //sketch toggle
 
  generateBoard(50); //board ready to sketch for first page load
